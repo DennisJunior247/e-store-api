@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const productsSchema = new mongoose.Schema({
   pName: {
     type: String,
-    required: true,
+    // required: true,
     minlength: 5,
     maxlength: 100,
   },
@@ -40,12 +40,12 @@ const productsModel = mongoose.model("products", productsSchema);
 
 function validate(req) {
   const val = Joi.object({
-    pName: Joi.string().min(5).max(100).require(),
+
     pDescription: Joi.string().min(20).required(),
     pImage: Joi.array().min(1).max(3).required(),
-    pPrice: Joi.number(),
+    pPrice: Joi.number().required(),
     categoryId: Joi.objectId().required(),
-    pQantity: Joi.objectid().required(),
+    pQantity: Joi.objectId().required(),
   });
   return val.validate(req);
 }

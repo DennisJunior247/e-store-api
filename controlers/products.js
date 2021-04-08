@@ -18,7 +18,7 @@ class Products {
     if (!category) return res.send(400).send("invalid categoryId");
 
     let products = new productsModel({
-      cName: req.body.cname,
+      pName: req.body.pName,
       pDescription: req.body.pDescription,
       pPrice: req.body.pPrice,
       pQantity: req.body.pQantity,

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Joi = require("joi-objectid");
+const Joi = require("joi");
 
 
 const categorySchema = new mongoose.Schema(
@@ -27,9 +27,9 @@ const Category = mongoose.model("category", categorySchema);
 
 function validateSchema(req) {
   const schema = Joi.object({
-    cName: Joi.string().min(3).max(100).require(),
+    cName: Joi.string().min(3).max(100).required(),
     cImage: Joi.array().max(1),
-    cDescription: Joi.string().min(20).require(),
+    cDescription: Joi.string().min(20).required(),
   });
 
   return schema;
