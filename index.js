@@ -7,7 +7,7 @@ const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 
 // modlues import
-const error = require("./midlewares/error");
+const { error, error500 } = require("./midlewares/error");
 const productsRoute = require("./routes/products");
 const categoryRoute = require("./routes/category");
 
@@ -17,7 +17,8 @@ app.use(express.json());
 
 app.use("/category", categoryRoute);
 app.use("/products", productsRoute);
-// app.use(error);
+app.use(error);
+app.use(error500);
 
 // connecting to mongo db
 const db = process.env.DB || config.get("db");
