@@ -43,6 +43,13 @@ class Products {
     res.send(products);
   }
 
+  async deleteSingleProduct(req, res) {
+    del = await productsModel.findByIdAndDelete(req.params.productId);
+    if (!del) return res.status(400).send("product not found");
+    res.send(del);
+  }
+
+  
   async editProduct(req, res) {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);

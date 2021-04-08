@@ -5,7 +5,10 @@ class Category {
     const category = await categoryModel.find();
     res.send(category);
   }
-
+  async deleteCategory(req, res) {
+    const del = await categoryModel.findByIdAndDelete(req.params.body);
+    if (!del) return res.status(400).send("category not found");
+  }
   async addCategory(req, res) {
     const { error } = validateSchema(req.body);
     if (error) return res.status(400).send(error.details[0].message);
