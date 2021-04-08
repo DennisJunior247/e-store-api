@@ -1,9 +1,12 @@
 const { validateSchema, categoryModel } = require("../models/category");
 
 class Category {
+  async getCategory(req, res) {
+    const category = await categoryModel.find();
+    res.send(category);
+  }
 
   async addCategory(req, res) {
-
     const { error } = validateSchema(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
