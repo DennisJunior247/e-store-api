@@ -1,20 +1,24 @@
 const { productsModel, validate } = require("../models/products");
-const { Category } = require("../models/category");
+const { categoryModel } = require("../models/category");
 
 class Products {
+  async getproducts(req, res) {
+    const products = await productsModel.find();
 
-    async getproducts (req, res) {
-        const products = await Products.find();
-      
-        res.send(products);
-      }
+    res.send(products);
+  }
+
+  async getSingleProducts(req,res) {
+const
+
+  }
 
   async addProducts(req, res) {
     const { error } = validate(req.body);
 
     if (error) return res.status(400).send(error.details[0].message);
 
-    const category = await Category.findbyId(req.params.categoryId);
+    const category = await categoryModel.findById(req.body.categoryId);
     if (!category) return res.send(400).send("invalid categoryId");
 
     let products = new productsModel({
@@ -23,7 +27,7 @@ class Products {
       pPrice: req.body.pPrice,
       pQantity: req.body.pQantity,
       pImage: req.body.pImage,
-      pCategory: {
+      category: {
         _id: category._id,
         cName: category.cName,
       },

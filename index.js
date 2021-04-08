@@ -9,14 +9,15 @@ Joi.objectId = require("joi-objectid")(Joi);
 // modlues import
 const error = require("./midlewares/error");
 const productsRoute = require("./routes/products");
+const categoryRoute = require("./routes/category");
 
 const app = express();
 
 app.use(express.json());
 
+app.use("/category", categoryRoute);
 app.use("/products", productsRoute);
-app.use(error);
-
+// app.use(error);
 
 // connecting to mongo db
 const db = process.env.DB || config.get("db");
@@ -30,7 +31,6 @@ mongoose
   .then(console.log(`db connected at ${db}`))
   .catch((err) => console.error(err));
 
-  
 // listing to server
 const port = process.env.PORT || 3000;
 
