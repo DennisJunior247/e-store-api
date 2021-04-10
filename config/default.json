@@ -1,3 +1,4 @@
 {
-    "db": "mongodb://localhost/e-store"
+    "db": "mongodb://localhost/e-store",
+    "jwt": "jwtprivate"
 }

@@ -10,13 +10,15 @@ Joi.objectId = require("joi-objectid")(Joi);
 const { error, error500 } = require("./midlewares/error");
 const productsRoute = require("./routes/products");
 const categoryRoute = require("./routes/category");
+const orders = require("./routes/orders");
 
 const app = express();
 
 app.use(express.json());
-
+ 
 app.use("/category", categoryRoute);
 app.use("/products", productsRoute);
+app.use("/orders", orders);
 app.use(error);
 app.use(error500);
 

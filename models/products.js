@@ -5,7 +5,7 @@ const category = require("./category")
 const productsSchema = new mongoose.Schema({
   pName: {
     type: String,
-    // required: true,
+    required: true,
     minlength: 5,
     maxlength: 100,
   },
@@ -25,7 +25,7 @@ const productsSchema = new mongoose.Schema({
   },
  category:{
    type:category,
-   require:true
+   required:true
  },
   pQantity: {
     type: Number,
